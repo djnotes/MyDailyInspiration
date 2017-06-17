@@ -46,6 +46,7 @@ public final class MemoContract {
         name of the author of note
         Type: TEXT
          */
+        public static final String COLUMN_MEMO_TITLE= "title";
         public static final String COLUMN_MEMO_AUTHOR = "author";
         /*
         Date of saving the note
@@ -65,5 +66,7 @@ public final class MemoContract {
         public static final int PRIORITY_HIGH=0;
         public static final int PRIORITY_MEDIUM=1;
         public static final int PRIORITY_LOW=2;
+        public static final int PRIORITY_UNKNOWN = 3;
+
     }
 }

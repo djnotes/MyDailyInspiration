@@ -21,10 +21,11 @@ public class MemoDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String SQL_CREATE_MEMO_TABLE="CREATE TABLE " + MemoEntry.TABLE_NAME
                 + "("+ MemoEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + MemoEntry.AUTHOR + " TEXT, "
-                + MemoEntry.NOTE + " TEXT, "
-                + MemoEntry.DATE + " TEXT, "
-                + MemoEntry.PRIORITY + "INTEGER NOT NULL DEFAULT 1);";
+                + MemoEntry.COLUMN_MEMO_TITLE + " TEXT, "
+                + MemoEntry.COLUMN_MEMO_AUTHOR + " TEXT, "
+                + MemoEntry.COLUMN_MEMO_NOTE+ " TEXT, "
+                + MemoEntry.COLUMN_MEMO_DATE+ " TEXT, "
+                + MemoEntry.COLUMN_MEMO_PRIORITY+ "INTEGER NOT NULL DEFAULT 1);";
         db.execSQL(SQL_CREATE_MEMO_TABLE);
 
     }
@@ -33,4 +34,5 @@ public class MemoDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
 }
