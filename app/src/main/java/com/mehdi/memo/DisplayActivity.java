@@ -1,4 +1,4 @@
-package mehdihaghgoo.mydailyinspiration;
+package com.mehdi.memo;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;

@@ -1,4 +1,4 @@
-package mehdihaghgoo.mydailyinspiration.data;
+package com.mehdi.memo.data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import mehdihaghgoo.mydailyinspiration.data.MemoContract.MemoEntry;
+import com.mehdi.memo.data.MemoContract.MemoEntry;
 
 /**
  * Created by john on 6/17/17.

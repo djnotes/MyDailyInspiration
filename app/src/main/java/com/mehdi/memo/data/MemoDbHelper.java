@@ -1,9 +1,9 @@
-package mehdihaghgoo.mydailyinspiration.data;
+package com.mehdi.memo.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import mehdihaghgoo.mydailyinspiration.data.MemoContract.MemoEntry;
+import com.mehdi.memo.data.MemoContract.MemoEntry;
 /**
  * Created by john on 6/17/17.
  */

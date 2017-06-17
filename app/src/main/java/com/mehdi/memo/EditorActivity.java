@@ -1,8 +1,7 @@
-package mehdihaghgoo.mydailyinspiration;
+package com.mehdi.memo;
 
 import android.content.ContentValues;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -15,8 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import mehdihaghgoo.mydailyinspiration.data.MemoContract;
-import mehdihaghgoo.mydailyinspiration.data.MemoContract.MemoEntry;
+import com.mehdi.memo.data.MemoContract;
+import com.mehdi.memo.data.MemoContract.MemoEntry;
+
+import mehdihaghgoo.mydailyinspiration.R;
 
 /**
  * Created by john on 6/17/17.

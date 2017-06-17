@@ -1,4 +1,4 @@
-package mehdihaghgoo.mydailyinspiration.data;
+package com.mehdi.memo.data;
 
 import android.content.ContentResolver;
 import android.net.Uri;
@@ -17,7 +17,7 @@ public final class MemoContract {
     }
 
     //Define content authority
-    public static final String CONTENT_AUTHORITY="mehdihaghgoo.mydailyinspiration";
+    public static final String CONTENT_AUTHORITY="com.mehdi.memo";
     public static final Uri BASE_CONTENT_URI= Uri.parse("content://"+ CONTENT_AUTHORITY);
     public static final String PATH_MEMO="memo";
 
