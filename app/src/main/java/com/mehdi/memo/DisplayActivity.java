@@ -11,7 +11,8 @@ public class DisplayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display);
+        setContentView(com.mehdi.memo.R.layout.activity_display);
+
 
         FloatingActionButton fab=(FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

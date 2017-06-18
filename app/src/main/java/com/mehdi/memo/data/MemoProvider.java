@@ -11,6 +11,9 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
+
 
 import com.mehdi.memo.data.MemoContract.MemoEntry;
 
@@ -19,6 +22,7 @@ import com.mehdi.memo.data.MemoContract.MemoEntry;
  */
 
 public class MemoProvider extends ContentProvider {
+    private static final String LOG_TAG = MemoProvider.class.getSimpleName();
     private SQLiteOpenHelper mDbHelper;
 
     /* Uri matcher code for the content URI for the memo table
@@ -47,7 +51,7 @@ public class MemoProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-        SQLiteDatabase db=mDbHelper.getReadableDatabase();
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
         return null;
     }
 
@@ -65,9 +69,8 @@ public class MemoProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case MEMO:
-                getContext().getContentResolver().notifyChange(uri, null);
+                Log.i(LOG_TAG, "case MEMO true");
                 return insertMemo(uri, values);
-
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
 
@@ -88,23 +91,20 @@ public class MemoProvider extends ContentProvider {
 
 
     private Uri insertMemo(Uri uri, ContentValues values) {
-    SQLiteDatabase db=mDbHelper.getWritableDatabase();
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-        String memoNote=values.getAsString(MemoEntry.COLUMN_MEMO_NOTE);
-        String memoTitle=values.getAsString(MemoEntry.COLUMN_MEMO_TITLE);
-        String memoAuthor=values.getAsString(MemoEntry.COLUMN_MEMO_AUTHOR);
+        String memoNote = values.getAsString(MemoEntry.COLUMN_MEMO_NOTE);
+        String memoTitle = values.getAsString(MemoEntry.COLUMN_MEMO_TITLE);
+        String memoAuthor = values.getAsString(MemoEntry.COLUMN_MEMO_AUTHOR);
 
 
-        if(TextUtils.isEmpty(memoNote)){
+        if (TextUtils.isEmpty(memoNote)) {
             throw new IllegalArgumentException("Memo requires a text");
         }
 
-        long newRow=db.insert(MemoEntry.TABLE_NAME,null,values);
-        if(newRow == -1){
-            return null; //failure
-        }
+        long newRow=db.insert(MemoEntry.TABLE_NAME, null, values);
 
-        //Return ID of the newly inserted data
-        return ContentUris.withAppendedId(MemoEntry.CONTENT_URI,newRow);
+        //Return Uri of the newly inserted data
+        return ContentUris.withAppendedId(uri,newRow);
     }
 }

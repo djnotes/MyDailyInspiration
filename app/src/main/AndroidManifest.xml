@@ -21,6 +21,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayActivity"/>
         </activity>
+        <provider
+            android:name=".data.MemoProvider"
+            android:authorities="com.mehdi.memo"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,10 +1,13 @@
 package com.mehdi.memo;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +19,10 @@ import android.widget.Toast;
 
 import com.mehdi.memo.data.MemoContract;
 import com.mehdi.memo.data.MemoContract.MemoEntry;
+import com.mehdi.memo.data.MemoProvider;
 
-import mehdihaghgoo.mydailyinspiration.R;
+import static java.security.AccessController.getContext;
+
 
 /**
  * Created by john on 6/17/17.
@@ -26,6 +31,7 @@ import mehdihaghgoo.mydailyinspiration.R;
 public class EditorActivity extends AppCompatActivity{
 
 
+    public static final String LOG_TAG = EditorActivity.class.getSimpleName();
     //define user input fields
     private EditText mMemoNoteET;
     private EditText mMemoTitleET;
@@ -46,6 +52,7 @@ public class EditorActivity extends AppCompatActivity{
         //Find EditTexts and spinner views
         mMemoNoteET=(EditText) findViewById(R.id.memo_note);
         //... etc.
+
 
     }
 
@@ -99,6 +106,8 @@ public class EditorActivity extends AppCompatActivity{
             case R.id.action_save:
                 /* Save memo
                  */
+
+
                 saveMemo();
 
                 break;
@@ -120,7 +129,13 @@ public class EditorActivity extends AppCompatActivity{
         String memoNote=mMemoNoteET.getText().toString();
 
         values.put(MemoContract.MemoEntry.COLUMN_MEMO_NOTE,memoNote);
-        getContentResolver().insert(MemoEntry.CONTENT_URI,values);
+        Uri insertResult=getContentResolver().insert(MemoEntry.CONTENT_URI,values);
+        if(insertResult==null){
+            Toast.makeText(getApplicationContext(),R.string.insert_failed,Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(getApplicationContext(),R.string.save_successful,Toast.LENGTH_SHORT).show();
+        }
     }
 
     private boolean controlInput() {
