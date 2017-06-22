@@ -5,33 +5,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     >
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/today_inspiration"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="-3dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textSize="30sp"
+
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/memo_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:id="@+id/text_memo_note"
+        android:layout_width="368dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="10dp"
+        android:layout_margin="10dp"
         android:ems="10"
         android:inputType="textMultiLine"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_overview"
 
-        tools:layout_editor_absoluteY="31dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_memo_title"
+        android:text="@string/title"
+        app:layout_constraintTop_toBottomOf="@+id/text_memo_note"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
 
+        />
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_memo_title"
+        app:layout_constraintTop_toBottomOf="@+id/text_memo_note"
+        app:layout_constraintLeft_toRightOf="@+id/tv_memo_title"
+        />
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_memo_title"
+        android:text="@string/author"/>
+    <EditText
+        android:id="@+id/text_author"
+        android:layout_width="@dimen/width_half_layout"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_author"
+        app:layout_constraintTop_toBottomOf="@+id/text_memo_title"/>
+
+    <Spinner
+        android:id="@+id/spinner_priority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_author"
+        />
 
 
 

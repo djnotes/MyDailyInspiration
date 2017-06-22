@@ -52,7 +52,8 @@ public class MemoProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        return null;
+
+        return db.query(MemoEntry.TABLE_NAME,projection,selection,selectionArgs,null,null,null);
     }
 
     @Nullable
@@ -69,7 +70,7 @@ public class MemoProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case MEMO:
-                Log.i(LOG_TAG, "case MEMO true");
+                getContext().getContentResolver().notifyChange(uri,null);
                 return insertMemo(uri, values);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
@@ -94,8 +95,6 @@ public class MemoProvider extends ContentProvider {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         String memoNote = values.getAsString(MemoEntry.COLUMN_MEMO_NOTE);
-        String memoTitle = values.getAsString(MemoEntry.COLUMN_MEMO_TITLE);
-        String memoAuthor = values.getAsString(MemoEntry.COLUMN_MEMO_AUTHOR);
 
 
         if (TextUtils.isEmpty(memoNote)) {

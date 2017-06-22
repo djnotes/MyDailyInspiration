@@ -1,13 +1,11 @@
 package com.mehdi.memo;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,9 +17,6 @@ import android.widget.Toast;
 
 import com.mehdi.memo.data.MemoContract;
 import com.mehdi.memo.data.MemoContract.MemoEntry;
-import com.mehdi.memo.data.MemoProvider;
-
-import static java.security.AccessController.getContext;
 
 
 /**
@@ -49,9 +44,12 @@ public class EditorActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
-        //Find EditTexts and spinner views
-        mMemoNoteET=(EditText) findViewById(R.id.memo_note);
-        //... etc.
+        /*Initialize edit texts and the spinner*/
+        mMemoNoteET=(EditText) findViewById(R.id.text_memo_note);
+        mMemoTitleET=(EditText) findViewById(R.id.text_memo_title);
+        mMemoAuthorET=(EditText) findViewById(R.id.text_author);
+        //Set up spinner
+        setupSpinner();
 
 
     }
@@ -65,6 +63,8 @@ public class EditorActivity extends AppCompatActivity{
         // set the dropdown style
         prioritySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
+        //find the spinner view
+        mMemoPrioritySpinner=(Spinner) findViewById(R.id.spinner_priority);
         //apply the adapter to the spinner
         mMemoPrioritySpinner.setAdapter(prioritySpinnerAdapter);
 
@@ -126,9 +126,25 @@ public class EditorActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), R.string.please_check_input,Toast.LENGTH_SHORT).show();
             return;
         }
-        String memoNote=mMemoNoteET.getText().toString();
 
-        values.put(MemoContract.MemoEntry.COLUMN_MEMO_NOTE,memoNote);
+        /*
+        * Get User input
+        * */
+        String memoNote=mMemoNoteET.getText().toString();
+        String memoTitle=mMemoTitleET.getText().toString();
+        String memoAuthor=mMemoAuthorET.getText().toString();
+
+
+
+        /*
+        * Add ContentValue items
+        * */
+        values.put(MemoEntry.COLUMN_MEMO_NOTE,memoNote);
+        values.put(MemoEntry.COLUMN_MEMO_TITLE, memoTitle);
+        values.put(MemoEntry.COLUMN_MEMO_AUTHOR,memoAuthor);
+        values.put(MemoEntry.COLUMN_MEMO_PRIORITY,mMemoPriority);
+
+
         Uri insertResult=getContentResolver().insert(MemoEntry.CONTENT_URI,values);
         if(insertResult==null){
             Toast.makeText(getApplicationContext(),R.string.insert_failed,Toast.LENGTH_SHORT).show();

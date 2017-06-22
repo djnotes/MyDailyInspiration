@@ -1,12 +1,25 @@
 package com.mehdi.memo;
 
+import android.app.LoaderManager;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
-public class DisplayActivity extends AppCompatActivity {
+import com.mehdi.memo.data.MemoContract.MemoEntry;
+
+public class DisplayActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+    public static final int LOADER_URL = 0;
+    public ListView mMemoListView;
+    MemoCursorAdapter mMemoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +35,65 @@ public class DisplayActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        /* Set up the listview */
+        mMemoListView =(ListView) findViewById(R.id.listview);
+
+        //Set empty view
+        View emptyView=findViewById(R.id.empty_view);
+        mMemoListView.setEmptyView(emptyView);
+        mMemoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
+
+
+        //Create a MemoCursorAdapter. set it to null because we have not yet queried the db
+        mMemoAdapter=new MemoCursorAdapter(this,null);
+
+        //set list's adapter
+        mMemoListView.setAdapter(mMemoAdapter);
+
+        //Fire the loader
+        getLoaderManager().initLoader(LOADER_URL,null,this);
+
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        String [] projection ={
+                MemoEntry._ID,
+                MemoEntry.COLUMN_MEMO_TITLE,
+                MemoEntry.COLUMN_MEMO_AUTHOR,
+                MemoEntry.COLUMN_MEMO_NOTE
+        };
+
+        switch(id) {
+            case LOADER_URL:
+                return new CursorLoader(getApplicationContext(),
+                        MemoEntry.CONTENT_URI,
+                        projection,
+                        null,
+                        null,
+                        null);
+            default:
+                return null;
+        }
+
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mMemoAdapter.swapCursor(data); //Change the cursor providing our adapter's data
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mMemoAdapter.swapCursor(null);
+    }
 }

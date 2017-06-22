@@ -6,6 +6,33 @@
     android:layout_height="match_parent"
     tools:context="com.mehdi.memo.DisplayActivity">
 
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/tv_empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_is_empty"/>
+        <ImageView
+            android:id="@+id/iv_empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emptybox"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_empty_view"
+            android:contentDescription="@string/list_is_empty"
+            />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_height="@android:dimen/notification_large_icon_height"
@@ -15,4 +42,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintRight_toRightOf="parent" />
+
+
+
 </android.support.constraint.ConstraintLayout>

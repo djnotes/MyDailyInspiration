@@ -25,7 +25,7 @@ public class MemoDbHelper extends SQLiteOpenHelper {
                 + MemoEntry.COLUMN_MEMO_AUTHOR + " TEXT, "
                 + MemoEntry.COLUMN_MEMO_NOTE+ " TEXT, "
                 + MemoEntry.COLUMN_MEMO_DATE+ " TEXT, "
-                + MemoEntry.COLUMN_MEMO_PRIORITY+ "INTEGER NOT NULL DEFAULT 1);";
+                + MemoEntry.COLUMN_MEMO_PRIORITY+ " INTEGER NOT NULL DEFAULT 0);";
         db.execSQL(SQL_CREATE_MEMO_TABLE);
 
     }

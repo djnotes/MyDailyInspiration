@@ -10,4 +10,7 @@
     <string name="today_inspiration">Today\'s Inspiration</string>
     <string name="insert_failed">Insert failed</string>
     <string name="save_successful">Data was successfully saved</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="list_is_empty">Nothing is going on here!</string>
 </resources>
