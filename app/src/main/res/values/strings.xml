@@ -13,4 +13,13 @@
     <string name="title">Title</string>
     <string name="author">Author</string>
     <string name="list_is_empty">Nothing is going on here!</string>
+    <string name="adding_new_memo">Add New Memo</string>
+    <string name="editing_existing_memo">Edit Existing Memo</string>
+    <string name="delete_successful">Delete was successful</string>
+    <string name="delete_failed">Delete failed</string>
+    <string name="update_successful">Update successful</string>
+    <string name="update_failed">Update failed</string>
+    <string name="cancel">Cancel</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="settings">Settings</string>
 </resources>

@@ -49,11 +49,11 @@ public final class MemoContract {
         public static final String COLUMN_MEMO_TITLE= "title";
         public static final String COLUMN_MEMO_AUTHOR = "author";
         /*
-        Date of saving the note
+        Date of saving or updating the note
         Type: TEXT
         Format "YYYY-MM-DD HH:MM:SS.SSS"
          */
-        public static final String COLUMN_MEMO_DATE = "date";
+        public static final String COLUMN_MEMO_LAST_MODIFIED="last_modified";
         /*
         Note content
         Type: TEXT
@@ -61,6 +61,8 @@ public final class MemoContract {
         public static final String COLUMN_MEMO_NOTE = "note";
 
         public static final String COLUMN_MEMO_PRIORITY = "priority";
+
+
 
         /* Possible values for priority */
         public static final int PRIORITY_HIGH=0;

@@ -16,15 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.mehdi.memo.EditorActivity" android:parentActivityName=".DisplayActivity">
+        <activity
+            android:name=".EditorActivity"
+            android:parentActivityName=".DisplayActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisplayActivity"/>
+                android:value=".DisplayActivity" />
         </activity>
+
         <provider
             android:name=".data.MemoProvider"
             android:authorities="com.mehdi.memo"
             android:exported="false" />
+
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

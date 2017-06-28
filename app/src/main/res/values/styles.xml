@@ -9,4 +9,9 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="AppTheme_Dialog">
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@color/colorPrimaryDark_Dialog</item>
+    </style>
+
 </resources>

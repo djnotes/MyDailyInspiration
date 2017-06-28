@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_memo_title"
         android:text="@string/author"/>
     <EditText
-        android:id="@+id/text_author"
+        android:id="@+id/text_memo_author"
         android:layout_width="@dimen/width_half_layout"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_author"
+        app:layout_constraintTop_toBottomOf="@+id/text_memo_author"
         />
 
 

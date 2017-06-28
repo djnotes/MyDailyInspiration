@@ -52,8 +52,29 @@ public class MemoProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor cursor;
+        switch (sUriMatcher.match(uri)) {
+            case MEMO:
+                cursor = db.query(MemoEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+                break;
+            case MEMO_ID:
+                //A specific row is requested, so we query the db with that id in selection criteria
+                selection = MemoEntry._ID + "=?";
+                long id = ContentUris.parseId(uri);
+                selectionArgs = new String[]{String.valueOf(id)};
+                cursor = db.query(MemoEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+                break;
+            default:
+                cursor = null;
 
-        return db.query(MemoEntry.TABLE_NAME,projection,selection,selectionArgs,null,null,null);
+        }
+
+
+        //Set notification URI on the cursor,
+        //so that if the data at uri changes then we know we need to update the cursor
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
+        return cursor;
     }
 
     @Nullable
@@ -70,7 +91,7 @@ public class MemoProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case MEMO:
-                getContext().getContentResolver().notifyChange(uri,null);
+                getContext().getContentResolver().notifyChange(uri, null);
                 return insertMemo(uri, values);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
@@ -81,13 +102,81 @@ public class MemoProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[]
             selectionArgs) {
-        return 0;
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        int rowsDeleted;
+
+        switch (sUriMatcher.match(uri)) {
+            case MEMO:
+                rowsDeleted = db.delete(MemoEntry.TABLE_NAME, selection, selectionArgs);
+                if (rowsDeleted > 0) getContext().getContentResolver().notifyChange(uri, null);
+                return rowsDeleted;
+
+            case MEMO_ID:
+                rowsDeleted = db.delete(MemoEntry.TABLE_NAME, selection, selectionArgs);
+                if (rowsDeleted > 0) getContext().getContentResolver().notifyChange(uri, null);
+                return rowsDeleted;
+
+            default:
+                throw new IllegalArgumentException("Invalid uri");
+        }
+
     }
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String
             selection, @Nullable String[] selectionArgs) {
-        return 0;
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case MEMO:
+                return updateMemo(uri, values, selection, selectionArgs);
+
+            case MEMO_ID:
+                //pass the id to the update method
+                long id = ContentUris.parseId(uri);
+                selection = MemoEntry._ID + "=?";
+                selectionArgs = new String[]{String.valueOf(id)};
+                return updateMemo(uri, values, selection, selectionArgs);
+            default:
+                //an invalid uri was passed
+                throw new IllegalArgumentException("Update is not supported for " + uri);
+        }
+
+    }
+
+    private int updateMemo(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        //Sanity-check the values
+        if (values.containsKey(MemoEntry.COLUMN_MEMO_NOTE)) {
+            if (values.getAsString(MemoEntry.COLUMN_MEMO_NOTE) == null)
+                throw new IllegalArgumentException("Memo note is required");
+        }
+        if (values.containsKey(MemoEntry.COLUMN_MEMO_TITLE)) {
+            if (values.getAsString(MemoEntry.COLUMN_MEMO_TITLE) == null)
+                throw new IllegalArgumentException("Memo requires a title");
+        }
+        if (values.containsKey(MemoEntry.COLUMN_MEMO_PRIORITY)) {
+            Integer priority = values.getAsInteger(MemoEntry.COLUMN_MEMO_PRIORITY);
+            if (!(priority == MemoEntry.PRIORITY_HIGH ||
+                    priority == MemoEntry.PRIORITY_MEDIUM ||
+                    priority == MemoEntry.PRIORITY_LOW ||
+                    priority == MemoEntry.PRIORITY_UNKNOWN)) {
+                throw new IllegalArgumentException("Memo priority " + String.valueOf(priority) + " is not valid");
+            }
+        }
+
+
+        //execute update on the database and return the number of rows updated
+        int rowsUpdated = db.update(MemoEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        return rowsUpdated;
+
+
     }
 
 
@@ -101,9 +190,10 @@ public class MemoProvider extends ContentProvider {
             throw new IllegalArgumentException("Memo requires a text");
         }
 
-        long newRow=db.insert(MemoEntry.TABLE_NAME, null, values);
+        long newRow = db.insert(MemoEntry.TABLE_NAME, null, values);
 
+//        long newRow=db.execSQL("");
         //Return Uri of the newly inserted data
-        return ContentUris.withAppendedId(uri,newRow);
+        return ContentUris.withAppendedId(uri, newRow);
     }
 }
