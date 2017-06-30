@@ -133,5 +133,10 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
         return super.onOptionsItemSelected(item);
     }
 
+    public void runService(View view) {
+        Intent service=new Intent(this,NotificationService.class);
+        service.putExtra("MESSAGE","I hereby notify you");
+        startService(service);
+    }
 }
 
