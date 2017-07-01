@@ -8,6 +8,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Parcelable;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +30,6 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.mehdi.memo.R.layout.activity_display);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +74,7 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
 
         //Fire the loader
         getLoaderManager().initLoader(LOADER_URL, null, this);
+        runService();
 
     }
 
@@ -133,7 +134,7 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
         return super.onOptionsItemSelected(item);
     }
 
-    public void runService(View view) {
+    public void runService() {
         Intent service=new Intent(this,NotificationService.class);
         service.putExtra("MESSAGE","I hereby notify you");
         startService(service);

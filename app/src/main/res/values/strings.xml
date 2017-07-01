@@ -23,4 +23,8 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="settings">Settings</string>
     <string name="notification">notification</string>
+    <string name="permanent_notificaiton_off">Permanent Notification Off</string>
+    <string name="permanent_notification_off">Permanent Notification On</string>
+    <string name="permanent_notification_on">Permanent Notification On</string>
+    <string name="show_inspiration_on_lockscreen">Show Inspirations on Lock Screen</string>
 </resources>

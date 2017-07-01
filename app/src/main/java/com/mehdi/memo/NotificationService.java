@@ -1,10 +1,16 @@
 package com.mehdi.memo;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
@@ -16,6 +22,8 @@ import com.mehdi.memo.data.MemoContract;
  */
 
 public class NotificationService extends IntentService {
+
+
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
@@ -26,28 +34,20 @@ public class NotificationService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
-        String message=intent.getStringExtra("MESSAGE");
-        //Create an alert dialog builder
-        AlertDialog.Builder builder=new AlertDialog.Builder(this, R.style.Theme_AppCompat_Dialog);
-        builder.setIcon(R.drawable.alert);
-        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        //Read User preferences. If notification is enabled, then send a notification
+        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
+        boolean notificationState=prefs.getBoolean(SettingsActivity.KEY_NOTIFICATION_ENABLE,false);
+        if(notificationState) {
+            String message=intent.getStringExtra("MESSAGE");
+            NotificationCompat.Builder builder=new NotificationCompat.Builder(this);
+            builder.setSmallIcon(R.drawable.alert);
+            builder.setContentTitle("Hi There!");
+            builder.setContentText(message);
+            NotificationManager notificationManager=(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(0,builder.build());
+        }
 
 
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                return;
-            }
-        });
-        builder.setMessage(message);
-
-        //Create the alert dialog
-        AlertDialog dialog=builder.create();
-        dialog.show();
 
     }
 }
