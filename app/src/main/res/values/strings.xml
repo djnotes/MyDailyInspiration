@@ -27,4 +27,6 @@
     <string name="permanent_notification_off">Permanent Notification On</string>
     <string name="permanent_notification_on">Permanent Notification On</string>
     <string name="show_inspiration_on_lockscreen">Show Inspirations on Lock Screen</string>
+    <string name="show_random_inspiration">Show Random Inspirations</string>
+    <string name="show_latest_inspiration">Show the Last Inspiration Added</string>
 </resources>
