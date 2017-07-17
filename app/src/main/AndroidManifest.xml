@@ -23,10 +23,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayActivity" />
         </activity>
-        <activity android:name=".SettingsActivity"
+        <activity
+            android:name=".SettingsActivity"
             android:parentActivityName=".DisplayActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisplayActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DisplayActivity" />
+        </activity>
+        <activity
+            android:name=".DayTimeActivity"
+            android:parentActivityName=".SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SettingsActivity"/>
         </activity>
 
         <provider
@@ -36,8 +45,7 @@
 
         <service
             android:name=".NotificationService"
-            android:exported="false"
-            />
+            android:exported="false" />
 
     </application>
 </manifest>

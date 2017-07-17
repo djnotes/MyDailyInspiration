@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
     <CheckBoxPreference
         android:id="@+id/checkbox_enable_notification"
         android:defaultValue="true"
@@ -12,22 +13,26 @@
         android:key="pref_toggle_ongoing"
         android:summaryOff="@string/permanent_notificaiton_off"
         android:summaryOn="@string/permanent_notification_on"
-        android:title="Choose Notification Type"
-        />
+        android:title="Choose Notification Type" />
     <CheckBoxPreference
-        android:key="pref_show_on_lockscreen"
-        android:dependency="pref_enable_notification"
-        android:title="@string/show_inspiration_on_lockscreen"
         android:defaultValue="true"
-        />
+        android:dependency="pref_enable_notification"
+        android:key="pref_show_on_lockscreen"
+        android:title="@string/show_inspiration_on_lockscreen" />
     <SwitchPreference
+        android:defaultValue="false"
         android:dependency="pref_enable_notification"
         android:key="pref_toggle_random"
-        android:title="Choose one"
-        android:defaultValue="false"
-        android:summaryOn="@string/show_random_inspiration"
         android:summaryOff="@string/show_latest_inspiration"
+        android:summaryOn="@string/show_random_inspiration"
+        android:title="Choose one" />
+    <com.mehdi.memo.DayTimePreference
+        android:key="pref_day_time"
+        android:title="@string/config_day_time"
         />
+
+
+
 
 
 </PreferenceScreen>

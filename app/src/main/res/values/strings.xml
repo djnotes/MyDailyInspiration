@@ -29,4 +29,8 @@
     <string name="show_inspiration_on_lockscreen">Show Inspirations on Lock Screen</string>
     <string name="show_random_inspiration">Show Random Inspirations</string>
     <string name="show_latest_inspiration">Show the Last Inspiration Added</string>
+    <string name="no_notes_available">No Inspirations Available</string>
+    <string name="please_add_some_notes">Please Add Some Inspirations First</string>
+    <string name="day_and_time">Inspiration Moments</string>
+    <string name="config_day_time">Configure Inspiration Times</string>
 </resources>

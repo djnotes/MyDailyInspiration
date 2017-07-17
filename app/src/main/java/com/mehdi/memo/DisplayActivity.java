@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -23,11 +24,18 @@ import com.mehdi.memo.data.MemoContract.MemoEntry;
 
 public class DisplayActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     public static final int LOADER_URL = 0;
-    public ListView mMemoListView;
+    public static ListView mMemoListView;
     MemoCursorAdapter mMemoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Sets fullscreen-related flags for the display
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR,
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR);
+
         super.onCreate(savedInstanceState);
         setContentView(com.mehdi.memo.R.layout.activity_display);
 

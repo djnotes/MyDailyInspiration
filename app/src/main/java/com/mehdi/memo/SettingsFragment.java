@@ -1,8 +1,12 @@
 package com.mehdi.memo;
 
 import android.os.Bundle;
+import android.preference.DialogPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
+import android.util.AttributeSet;
+import android.view.View;
 
 /**
  * Created by john on 6/30/17.
@@ -16,4 +20,5 @@ public class SettingsFragment extends PreferenceFragment {
         //Load the preferences from XML resource
         addPreferencesFromResource(R.xml.preferences);
     }
+
 }

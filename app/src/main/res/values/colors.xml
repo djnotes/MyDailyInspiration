@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#135902</color>
     <color name="colorPrimaryDark">#020b48</color>
-    <color name="colorAccent">#ff40df</color>
+    <color name="colorAccent">#fa07ea</color>
     <color name="colorPrimary_Dialog">#a1c5f4</color>
     <color name="colorPrimaryDark_Dialog">#013959</color>
     <color name="colorAccent_Dialog">#000108</color>
+    <color name="colorBackground">#dee9fa</color>
 </resources>
