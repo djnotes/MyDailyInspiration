@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.mehdi.memo">
 
     <application
@@ -30,13 +31,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayActivity" />
         </activity>
-        <activity
-            android:name=".DayTimeActivity"
-            android:parentActivityName=".SettingsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SettingsActivity"/>
-        </activity>
 
         <provider
             android:name=".data.MemoProvider"
@@ -46,6 +40,9 @@
         <service
             android:name=".NotificationService"
             android:exported="false" />
-
+        <service
+            android:name=".DialogService"
+            android:exported="false"></service>
     </application>
+
 </manifest>

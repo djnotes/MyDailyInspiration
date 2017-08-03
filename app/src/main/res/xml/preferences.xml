@@ -26,11 +26,21 @@
         android:summaryOff="@string/show_latest_inspiration"
         android:summaryOn="@string/show_random_inspiration"
         android:title="Choose one" />
-    <com.mehdi.memo.DayTimePreference
-        android:key="pref_day_time"
-        android:title="@string/config_day_time"
-        />
 
+    <MultiSelectListPreference xmlns:android="http://schemas.android.com/apk/res/android"
+        android:key="@string/pref_times"
+        android:entries="@array/times"
+        android:entryValues="@array/times_values"
+        android:title="@string/select_inspiration_times"
+        android:dialogTitle="@string/select_inspiration_times"
+  />
+    <MultiSelectListPreference
+        android:entries="@array/weekdays"
+        android:entryValues="@array/weekdays_values"
+        android:key="pref_weekdays"
+        android:title="@string/select_week_days"
+        android:dialogTitle="@string/select_week_days"
+        />
 
 
 

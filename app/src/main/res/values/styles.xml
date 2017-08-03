@@ -8,7 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textSize">20sp</item>
         <item name="panelBackground">@color/colorBackground</item>
-
+        <!-- ADD A THEME TO THE FRAGMENT -->
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="dialogTheme">@style/AlertDialog.AppCompat</item>
 
     </style>
 

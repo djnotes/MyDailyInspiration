@@ -7,8 +7,47 @@
         <item>@string/priority_low</item>
         <item>@string/priority_unknown</item>
     </string-array>
-    <string name="priority_high">High Priority</string>
-    <string name="priority_medium">Medium Priority</string>
-    <string name="priority_low">Low Priority</string>
-    <string name="priority_unknown">Unknown Priority</string>
+
+    <string-array name="weekdays">
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
+    <string-array name="weekdays_values">
+        <item>saturday</item>
+        <item>sunday</item>
+        <item>monday</item>
+        <item>tuesday</item>
+        <item>wednesday</item>
+        <item>thursday</item>
+        <item>friday</item>
+
+    </string-array>
+    <string-array name="times">
+        <item>8:00</item>
+        <item>10:00</item>
+        <item>12:00 PM</item>
+        <item>2 PM</item>
+        <item>4 PM</item>
+        <item>5 PM</item>
+        <item> 8 PM</item>
+        <item>10 PM</item>
+        <item>11 PM</item>
+    </string-array>
+    <string-array name="times_values">
+        <item>8</item>
+        <item>10</item>
+        <item>12</item>
+        <item>14</item>
+        <item>16</item>
+        <item>17</item>
+        <item>20</item>
+        <item>22</item>
+        <item>23</item>
+    </string-array>
+
 </resources>

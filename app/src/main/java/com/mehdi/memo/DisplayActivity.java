@@ -8,9 +8,9 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Parcelable;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,13 +19,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.support.v4.app.FragmentTransaction;
 
 import com.mehdi.memo.data.MemoContract.MemoEntry;
 
 public class DisplayActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     public static final int LOADER_URL = 0;
+    private static final String FRAGTAG = "AlarmFragment";
     public static ListView mMemoListView;
     MemoCursorAdapter mMemoAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
 
         super.onCreate(savedInstanceState);
         setContentView(com.mehdi.memo.R.layout.activity_display);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,10 +64,10 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //prepare a uri for the item clicked by the user on the list view
-                Uri uri=ContentUris.withAppendedId(MemoEntry.CONTENT_URI,id);
+                Uri uri = ContentUris.withAppendedId(MemoEntry.CONTENT_URI, id);
 
                 //Create an intent to start EditorActivity
-                Intent editorIntent=new Intent(getApplicationContext(),EditorActivity.class);
+                Intent editorIntent = new Intent(getApplicationContext(), EditorActivity.class);
                 editorIntent.setData(uri);
 
                 //Fire the intent
@@ -82,9 +86,17 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
 
         //Fire the loader
         getLoaderManager().initLoader(LOADER_URL, null, this);
-        runService();
+
+        //Add an AlarmFragment to the activity
+        if (getSupportFragmentManager().findFragmentByTag(FRAGTAG) == null ) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            AlarmFragment fragment = new AlarmFragment();
+            transaction.add(fragment, FRAGTAG);
+            transaction.commit();
+        }
 
     }
+
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -121,18 +133,19 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
     public void onLoaderReset(Loader<Cursor> loader) {
         mMemoAdapter.swapCursor(null);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_display,menu);
+        getMenuInflater().inflate(R.menu.menu_display, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_settings:
                 //Open settings page (a new layout)
-                Intent settingsIntent=new Intent(DisplayActivity.this,SettingsActivity.class);
+                Intent settingsIntent = new Intent(DisplayActivity.this, SettingsActivity.class);
                 startActivity(settingsIntent);
                 break;
             default:
@@ -142,10 +155,6 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
         return super.onOptionsItemSelected(item);
     }
 
-    public void runService() {
-        Intent service=new Intent(this,NotificationService.class);
-        service.putExtra("MESSAGE","I hereby notify you");
-        startService(service);
-    }
+
 }
 
