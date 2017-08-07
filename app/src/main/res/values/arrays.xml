@@ -8,46 +8,27 @@
         <item>@string/priority_unknown</item>
     </string-array>
 
-    <string-array name="weekdays">
-        <item>Saturday</item>
-        <item>Sunday</item>
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
+    <string-array name="intervals">
+        <item>Every Hour</item>
+        <item>Every 2 Hours</item>
+        <item>Every 3 Hours</item>
+        <item>Every 5 Hours</item>
+        <item>Every 6 Hours</item>
+        <item>Every 8 Hours</item>
+        <item>Once Every Day</item>
+        <item>Twice A Day</item>
+        <item>Never</item>
     </string-array>
-    <string-array name="weekdays_values">
-        <item>saturday</item>
-        <item>sunday</item>
-        <item>monday</item>
-        <item>tuesday</item>
-        <item>wednesday</item>
-        <item>thursday</item>
-        <item>friday</item>
-
-    </string-array>
-    <string-array name="times">
-        <item>8:00</item>
-        <item>10:00</item>
-        <item>12:00 PM</item>
-        <item>2 PM</item>
-        <item>4 PM</item>
-        <item>5 PM</item>
-        <item> 8 PM</item>
-        <item>10 PM</item>
-        <item>11 PM</item>
-    </string-array>
-    <string-array name="times_values">
+    <string-array name="intervals_values">
+        <item>1</item><!--Every one hour-->
+        <item>2</item><!-- Every two hours -->
+        <item>3</item> <!-- And so on ... -->
+        <item>5</item>
+        <item>6</item>
         <item>8</item>
-        <item>10</item>
-        <item>12</item>
-        <item>14</item>
-        <item>16</item>
-        <item>17</item>
-        <item>20</item>
-        <item>22</item>
-        <item>23</item>
+        <item>24</item> <!-- Once a day -->
+        <item>12</item> <!-- Twice a day -->
+        <item>0</item> <!-- Never -->
     </string-array>
 
 </resources>

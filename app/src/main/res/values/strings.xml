@@ -41,8 +41,13 @@
     <string name="priority_medium" translatable="false">Medium Priority</string>
     <string name="priority_low" translatable="false">Low Priority</string>
     <string name="priority_unknown" translatable="false">Unknown Priority</string>
-    <string name="pref_times">pref_times</string>
+    <string name="pref_interval" translatable="false">pref_interval</string>
     <string name="select_inspiration_times">Select Inspiration Times</string>
     <string name="ok">OK</string>
     <string name="title_view" translatable="false">Read More ... </string>
+    <string name="pref_enable_notification" translatable="false">pref_enable_notification</string>
+    <string name="channel_id" translatable="false">channel_01</string>
+    <string name="channel_name" translatable="false">Channel Default</string>
+    <string name="channel_description" translatable="false">This is Default Channel</string>
+    <string name="preferences_filename" translatable="false">preferences.xml</string>
 </resources>

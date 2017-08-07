@@ -21,26 +21,21 @@
         android:title="@string/show_inspiration_on_lockscreen" />
     <SwitchPreference
         android:defaultValue="false"
-        android:dependency="pref_enable_notification"
+        android:dependency="@string/pref_enable_notification"
         android:key="pref_toggle_random"
         android:summaryOff="@string/show_latest_inspiration"
         android:summaryOn="@string/show_random_inspiration"
         android:title="Choose one" />
 
-    <MultiSelectListPreference xmlns:android="http://schemas.android.com/apk/res/android"
-        android:key="@string/pref_times"
-        android:entries="@array/times"
-        android:entryValues="@array/times_values"
+    <ListPreference xmlns:android="http://schemas.android.com/apk/res/android"
+        android:key="@string/pref_interval"
+        android:entries="@array/intervals"
+        android:entryValues="@array/intervals_values"
         android:title="@string/select_inspiration_times"
         android:dialogTitle="@string/select_inspiration_times"
+        android:dependency="@string/pref_enable_notification"
   />
-    <MultiSelectListPreference
-        android:entries="@array/weekdays"
-        android:entryValues="@array/weekdays_values"
-        android:key="pref_weekdays"
-        android:title="@string/select_week_days"
-        android:dialogTitle="@string/select_week_days"
-        />
+
 
 
 

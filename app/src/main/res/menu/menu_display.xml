@@ -4,7 +4,7 @@
     <item android:id="@+id/action_settings"
         android:title="@string/settings"
         android:icon="@drawable/gear"
-        app:showAsAction="always"
+        app:showAsAction="never"
         />
 
 </menu>

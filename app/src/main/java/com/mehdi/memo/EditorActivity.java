@@ -43,7 +43,7 @@ import java.util.Locale;
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
 
-    public static final String LOG_TAG = EditorActivity.class.getSimpleName();
+    private static final String LOG_TAG = EditorActivity.class.getSimpleName();
     private static final int EXISTING_MEMO_LOADER_URL = 0; //identifies the loader used inside this component
     //define user input fields
     private EditText mMemoNoteET;

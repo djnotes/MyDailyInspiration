@@ -4,5 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-
+<fragment android:name="com.mehdi.memo.SettingsFragment"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/settings_fragment"
+    />
 </LinearLayout>

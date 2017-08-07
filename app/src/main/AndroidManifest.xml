@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,17 +19,17 @@
         </activity>
         <activity
             android:name=".EditorActivity"
-            android:parentActivityName=".DisplayActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisplayActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".DisplayActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DisplayActivity" />
+                android:value=".MainActivity" />
         </activity>
 
         <provider
@@ -39,10 +39,7 @@
 
         <service
             android:name=".NotificationService"
-            android:exported="false" />
-        <service
-            android:name=".DialogService"
-            android:exported="false"></service>
+            android:exported="false"/>
     </application>
 
 </manifest>
