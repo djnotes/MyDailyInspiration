@@ -50,4 +50,6 @@
     <string name="channel_name" translatable="false">Channel Default</string>
     <string name="channel_description" translatable="false">This is Default Channel</string>
     <string name="preferences_filename" translatable="false">preferences.xml</string>
+    <string name="dummy_text">This is test. And that is test. These Are tests. \\n Everything is a test. \\n Fuck This. \\n Do not fuck with me! \\n Do the job\\n It is almost finished. \\n ARe you ready? \\n - Yes I am. \\n Go to hell!</string>
+    <string name="profile_picture">Profile Picture</string>
 </resources>

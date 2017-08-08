@@ -18,12 +18,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.support.v4.app.FragmentTransaction;
 
@@ -36,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public static ListView mMemoListView;
     MemoCursorAdapter mMemoAdapter;
 
-    SharedPreferences mPrefs;
-
+    //Define a toolbar
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
         super.onCreate(savedInstanceState);
-        setContentView(com.mehdi.memo.R.layout.activity_main);
+        setContentView(R.layout.navigation_drawer);
+
+        //Get reference for the toolbar
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -105,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             transaction.add(fragment , FRAGTAG);
             transaction.commit();
         }
+
 
     }
 
