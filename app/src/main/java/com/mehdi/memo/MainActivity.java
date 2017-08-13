@@ -2,34 +2,36 @@ package com.mehdi.memo;
 
 import android.app.AlertDialog;
 import android.app.LoaderManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.ContentUris;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NotificationCompat;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.support.v4.app.FragmentTransaction;
 
 import com.mehdi.memo.data.MemoContract.MemoEntry;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
     public static final int LOADER_URL = 0;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     //Define a toolbar
     Toolbar mToolbar;
+    DrawerLayout mDrawerLayout;
+    NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,45 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        //Find drawerlayout and navigationview
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        mNavigationView = findViewById(R.id.navigation_view);
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                //Define a new intent
+                Intent intent;
+                int id = menuItem.getItemId();
+                switch(id){
+                    case R.id.add_new:
+                        intent = new Intent (getApplicationContext(), EditorActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.drawer_settings:
+                        intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.about_app:
+                        intent = new Intent(getApplicationContext(), AboutActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.more_online:
+                        comingSoon();
+                        break;
+                    case R.id.share:
+                        comingSoon();
+                        break;
+
+                }
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                return true; //"True to display the item as the selected item." - Google Docs
+            }
+        });
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +155,27 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             transaction.commit();
         }
 
+        //Create a Locale and set program language accordingly
+    }
 
+    private void comingSoon() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+        .setTitle(R.string.title_message)
+                .setMessage(R.string.coming_soon)
+                .setIcon(R.drawable.icons8_future)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        builder.create().show();
     }
 
 

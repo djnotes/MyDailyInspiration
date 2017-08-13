@@ -10,9 +10,9 @@
     <string name="today_inspiration">Today\'s Inspiration</string>
     <string name="insert_failed">Insert failed</string>
     <string name="save_successful">Data was successfully saved</string>
-    <string name="title">Title</string>
+    <string name="title_message">Message</string>
     <string name="author">Author</string>
-    <string name="list_is_empty">Nothing is going on here!</string>
+    <string name="list_is_empty">There are no notes! Please add some notes first.</string>
     <string name="adding_new_memo">Add New Memo</string>
     <string name="editing_existing_memo">Edit Existing Memo</string>
     <string name="delete_successful">Delete was successful</string>
@@ -24,7 +24,6 @@
     <string name="settings">Settings</string>
     <string name="notification">notification</string>
     <string name="permanent_notificaiton_off">Permanent Notification Off</string>
-    <string name="permanent_notification_off">Permanent Notification On</string>
     <string name="permanent_notification_on">Permanent Notification On</string>
     <string name="show_inspiration_on_lockscreen">Show Inspirations on Lock Screen</string>
     <string name="show_random_inspiration">Show Random Inspirations</string>
@@ -47,9 +46,18 @@
     <string name="title_view" translatable="false">Read More ... </string>
     <string name="pref_enable_notification" translatable="false">pref_enable_notification</string>
     <string name="channel_id" translatable="false">channel_01</string>
-    <string name="channel_name" translatable="false">Channel Default</string>
     <string name="channel_description" translatable="false">This is Default Channel</string>
     <string name="preferences_filename" translatable="false">preferences.xml</string>
-    <string name="dummy_text">This is test. And that is test. These Are tests. \\n Everything is a test. \\n Fuck This. \\n Do not fuck with me! \\n Do the job\\n It is almost finished. \\n ARe you ready? \\n - Yes I am. \\n Go to hell!</string>
+    <string name="about_app">
+        No one can inspire us better than ourselves. So, I made this application which allows you to write your own daily inspirations
+        so that they will be reminded to you the next day. You can select to be notified by either the most recent inspiration you have added
+        or a random inspiration from among your inspirations. I hope you find this application useful. I would appreciate your comments and ratings
+        and will work to improve the app constantly.
+    </string>
+    <string name="icons8_notice" >Some icons used in the app are from Icons8</string>
     <string name="profile_picture">Profile Picture</string>
+    <string name="drawer_open" translatable="false">Open Navigation Drawer</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="drawer_close" translatable="false">Drawer Close</string>
+    <string name="pref_random" translatable="false">pref_toggle_random</string>
 </resources>

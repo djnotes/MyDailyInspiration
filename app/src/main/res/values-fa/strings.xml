@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">الهام روزانه من</string>
+    <string name="last_inspiration">جدیدترین الهام</string>
+    <string name="save">ذخیره</string>
+    <string name="delete">حذف</string>
+    <string name="please_check_input">لطفا ورودی خود را کنترل نمایید</string>
+    <string name="today_inspiration">الهام امروز</string>
+    <string name="insert_failed">ثبت شکست خورد</string>
+    <string name="save_successful">ذخیره سازی با موفقیت انجام شد</string>
+    <string name="title_message">پیغام</string>
+    <string name="author">نویسنده</string>
+    <string name="list_is_empty">هیچ یادداشتی وجود ندارد. لطفا ابتدا چند یادداشت اضافه نمایید.</string>
+    <string name="adding_new_memo">افزودن یادداشت جدید</string>
+    <string name="editing_existing_memo">ویرایش یادداشت موجود</string>
+    <string name="delete_successful">حذف موفق بود</string>
+    <string name="delete_failed">حذف شکست خورد</string>
+    <string name="update_successful">بروزرسانی موفق</string>
+    <string name="update_failed">بروزرسانی شکست خورد</string>
+    <string name="cancel">لغو</string>
+    <string name="are_you_sure">آیا مطمئن هستید؟</string>
+    <string name="settings">تنظیمات</string>
+    <string name="notification">هشدار</string>
+    <string name="permanent_notificaiton_off">هشدار دائم خاموش</string>
+    <string name="permanent_notification_on">هشدار دائم روشن</string>
+    <string name="show_inspiration_on_lockscreen">نمایش اعلان بر روی صفحه قفل</string>
+    <string name="show_random_inspiration">نمایش الهام تصادفی</string>
+    <string name="show_latest_inspiration">نمایش آخرین الهام</string>
+    <string name="no_notes_available">هیچ یادداشتی موجود نیست</string>
+    <string name="please_add_some_notes">لطفا چند یادداشت اضافه کنید</string>
+    <string name="day_and_time">زمان های الهام</string>
+    <string name="config_day_time">تنظیم زمان های هشدار</string>
+    <string name="set_notification_times">تنظیم زمان های هشدار</string>
+    <string name="time1">۸:۰۰</string>
+    <string name="time2">۱۳:۳۰</string>
+    <string name="select_week_days">روزهای هفته را انتخاب کنید</string>
+    <string name="select_inspiration_times">زمان های الهام را انتخاب کنید</string>
+    <string name="ok">باشه</string>
+    <string name="about_app">هیچ کس بهتر از خود ما نمی تواند به ما الهام بدهد. \nبه همین خاطر من این برنامه را نوشتم که به شما امکان می دهد الهامات روزمره خودتان را بنویسید به طوری که روز بعد به شما یادآوری شوند. \nشما می توانید انتخاب کنید که الهامات تصادفی به شما یادآوری شود و یا آخرین الهام اضافه شده. امیدوارم این برنامه را مفید بیابید. پیشاپیش قدردان نظرات و امتیازدهی های شما نسبت به برنامه هستم \nو تلاش خواهم کرد دائم برنامه را بهبود بخشم. \n</string>
+    <string name="icons8_notice">برخی آیکون های استفاده شده در برنامه از Icons8 می باشند.</string>
+    <string name="profile_picture">تصویر پروفایل</string>
+    <string name="coming_soon">به زودی</string>
+    <string name="hello_blank_fragment">سلام</string>
+</resources>

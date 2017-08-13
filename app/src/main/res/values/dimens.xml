@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="normal_text">16sp</dimen>
+    <dimen name="normal_text">20sp</dimen>
     <dimen name="caption_text">12sp</dimen>
     <dimen name="width_half_layout">100dp</dimen>
     <dimen name="height_text_3lines">150dp</dimen>
@@ -8,4 +8,5 @@
     <dimen name="margin">8dp</dimen>
     <dimen name="text_padding">8dp</dimen>
     <dimen name="large_text">30sp</dimen>
+    <dimen name="elevation">5dp</dimen>
 </resources>

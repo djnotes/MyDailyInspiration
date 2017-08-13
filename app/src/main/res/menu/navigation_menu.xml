@@ -22,7 +22,7 @@
         <menu>
             <item
                 android:title="Find Inspirations Online"
-                android:id="@+id/find_inspiration_online"
+                android:id="@+id/more_online"
                 android:icon="@drawable/web"
                 />
             <item

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
 import java.text.DateFormat;
@@ -50,6 +51,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private EditText mMemoTitleET;
     private EditText mMemoAuthorET;
     private Spinner mMemoPrioritySpinner; //Here, priorities are shown to the user to choose from
+    Toolbar mToolbar;
 
 
 
@@ -64,6 +66,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
+
+        //Setup action bar
+        mToolbar = findViewById(R.id.toolbar_editor);
+        setSupportActionBar(mToolbar);
 
         /*Initialize edit texts and the spinner*/
         mMemoNoteET = (EditText) findViewById(R.id.text_memo_note);

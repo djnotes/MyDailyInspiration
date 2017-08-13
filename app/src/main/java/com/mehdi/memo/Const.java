@@ -12,4 +12,5 @@ class Const {
     public static final String ACTION_NOTIFY="com.mehdi.memo.action.notify";
     public static final String PREFS_FILENAME ="preferences.xml";
 
+    public static final CharSequence DEFAULT_NOTIFY_CHANNEL = "Default Channel";
 }

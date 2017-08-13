@@ -28,7 +28,7 @@ public final class MemoContract {
         public static final Uri CONTENT_URI=Uri.withAppendedPath(BASE_CONTENT_URI,PATH_MEMO);
 
         /**
-         * The MIME type of the {@link #CONTENT_URI} for a single pet.
+         * The MIME type of the {@link #CONTENT_URI} for a single memo.
          */
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MEMO;

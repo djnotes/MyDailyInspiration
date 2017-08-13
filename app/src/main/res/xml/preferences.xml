@@ -22,7 +22,7 @@
     <SwitchPreference
         android:defaultValue="false"
         android:dependency="@string/pref_enable_notification"
-        android:key="pref_toggle_random"
+        android:key="@string/pref_random"
         android:summaryOff="@string/show_latest_inspiration"
         android:summaryOn="@string/show_random_inspiration"
         android:title="Choose one" />

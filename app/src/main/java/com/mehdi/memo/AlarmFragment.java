@@ -2,10 +2,12 @@ package com.mehdi.memo;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,18 +19,19 @@ import android.util.Log;
 public class AlarmFragment extends Fragment {
 
     //Define intervals in milliseconds to use for scheduling
-    private static final int INTERVAL_HUGE = 1000*3600*24*365; //A year
-    private static final int INTERVAL_1HOUR = 1000*3600;
-    private static final int INTERVAL_2HOURS = 1000*3600*2;
-    private static final int INTERVAL_3HOURS = 1000*3600*3;
-    private static final int INTERVAL_5HOURS = 1000*3600*5;
-    private static final int INTERVAL_6HOURS = 1000*3600*6;
-    private static final int INTERVAL_8HOURS = 1000*3600*8;
-    private static final int INTERVAL_12HOURS = 1000*3600*12;
-    private static final int INTERVAL_24HOURS = 1000*3600*24;
+    private static final long INTERVAL_NEVER = -1; //Never
+    private static final long INTERVAL_1HOUR = 1000 *10; //1 hour
+    private static final long INTERVAL_2HOURS = 1000 * 3600 * 2;
+    private static final long INTERVAL_3HOURS = 1000 * 3600 * 3;
+    private static final long INTERVAL_5HOURS = 1000 * 3600 * 5;
+    private static final long INTERVAL_6HOURS = 1000 * 3600 * 6;
+    private static final long INTERVAL_8HOURS = 1000 * 3600 * 8;
+    private static final long INTERVAL_12HOURS = 1000 * 3600 * 12;
+    private static final long INTERVAL_24HOURS = 1000 * 3600 * 24;
 
     //This code is defined and consumed by the app
     private static final int REQUEST_CODE = 0;
+    private static final String LOG_TAG = AlarmFragment.class.getSimpleName();
     public final String TAG = this.getClass().getSimpleName();
 
     @Override
@@ -39,18 +42,20 @@ public class AlarmFragment extends Fragment {
         intent.setAction(Const.ACTION_NOTIFY);
 
         //Create a pending intent to be fired outside of the application
-        PendingIntent alarmIntent = PendingIntent.getService(getActivity().getApplicationContext(),REQUEST_CODE,intent,0);
+        PendingIntent alarmIntent = PendingIntent.getService(getActivity().getApplicationContext(), REQUEST_CODE, intent, 0);
 
 
         //Create alarm. We will use the ELAPSED_REALTIME alarm type
         int alarmType = AlarmManager.ELAPSED_REALTIME;
-        int interval; //user-selected interval for alarms; Set this from preferences
-        SharedPreferences prefs = getActivity().getSharedPreferences(Const.PREFS_FILENAME,0);
-        interval = INTERVAL_HUGE;
+        long interval; //user-selected interval for alarms; Set this from preferences
+        //Instantiate app preferences
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        interval = INTERVAL_NEVER;
         int entryValue = Integer.valueOf(
-                prefs.getString(getString(R.string.pref_interval),"0")
+                prefs.getString(getString(R.string.pref_interval), "0")
         );
-        switch(entryValue){
+        Log.i(LOG_TAG, String.format("Selected Entry: %d",entryValue));
+        switch (entryValue) {
             case 1:
                 //Give notification every hour
                 interval = INTERVAL_1HOUR;
@@ -77,17 +82,21 @@ public class AlarmFragment extends Fragment {
                 interval = INTERVAL_24HOURS; //Once a day
                 break;
         }
+        Log.i(LOG_TAG, String.format("INTERVAL: %d",interval));
 
 
         //Request alarm manager from the system
-        AlarmManager alarmManager = (AlarmManager) getActivity().getApplicationContext().getSystemService(getActivity().ALARM_SERVICE);
+        if (interval != INTERVAL_NEVER) {
+            AlarmManager alarmManager = (AlarmManager) getActivity().getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+            //Set start delay and interval between repeats
+            alarmManager.setRepeating(alarmType,
+                    SystemClock.elapsedRealtime() + interval,
+                    interval,
+                    alarmIntent);
 
-        //Set start delay and interval between repeats
-        alarmManager.setRepeating(alarmType,
-                SystemClock.elapsedRealtime() + interval,
-                interval,
-                alarmIntent);
-        Log.i(TAG," Alarm set");
+        }
+
+        Log.i(TAG, " Alarm set");
     }
 
 }
