@@ -70,11 +70,17 @@ public class NotificationService extends IntentService {
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             mNotificationManager.createNotificationChannel(mChannel);
         }
+        builder.addAction(R.drawable.ic_done, "Action Title", PendingIntent.getActivity(
+                getApplicationContext(), REQUEST_CODE + 1,
+                new Intent (getApplicationContext(), MainActivity.class),
+                PendingIntent.FLAG_CANCEL_CURRENT
+        ));
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
         builder.setContentTitle(mTitle)
                 .setContentText(mContentText)
                 .setSmallIcon(R.drawable.ic_done)
                 .setLights(Color.argb(0, 255, 0, 0), 1000, 3000)
+                .setAutoCancel(true)
                 .setContentIntent(contentIntent);
         mNotificationManager.notify(notifyId, builder.build());
         Log.i(LOG_TAG, "USER NOTIFIED!!!");
@@ -84,7 +90,7 @@ public class NotificationService extends IntentService {
         //Check preferences to see whether random inspiration is ON.
         //In that case pick a random note, else return the latest
         SharedPreferences preferences = getSharedPreferences(getString(R.string.preferences_filename), Context.MODE_PRIVATE);
-        boolean randomNote = preferences.getBoolean(getString(R.string.pref_random), true);
+        boolean randomNote = preferences.getBoolean(getString(R.string.pref_random), false);
 
         //TODO: Add code to generate a random index to pick a note from database.
         //It appears I need to query the whole database into a cursor and then pick one!
@@ -101,9 +107,16 @@ public class NotificationService extends IntentService {
                 null,
                 null
         ); //Cursor to hold the query result
-        cursor.moveToFirst(); //not doing this is apparently always a culprit
-        int count = cursor.getCount(); //size of cursor
+        if (cursor != null) {
+            cursor.moveToFirst(); //not doing this is apparently always a culprit
+        }
+        int count = 0; //size of cursor
+        if (cursor != null) {
+            count = cursor.getCount();
+        }
         int selectRow = count; //selected row from the result set
+        Log.d(LOG_TAG, "NUMBER OF ROWS: " + String.valueOf(count));
+
         if (count == 0) {
             mContentText = getString(R.string.please_add_some_notes);
             mTitle = getString(R.string.no_notes_available);
@@ -112,13 +125,14 @@ public class NotificationService extends IntentService {
         } else {
             if (randomNote) { //pick a random inspiration
                 Random random = new Random();
-                selectRow = random.nextInt() % count;
+                selectRow = random.nextInt(count); //this gives random number between 0 (inclusive) and count (exclusive)
+                Log.d(LOG_TAG,"Selected Row: " + String.valueOf(selectRow));
             }
             else { //If random note is not enabled, then pick the last one. Note: Index start from zero so we have to do minus 1
                 selectRow = count - 1;
             }
         }
-        cursor.moveToPosition(selectRow);
+        cursor.move(selectRow);
         mTitle = cursor.getString(
                 cursor.getColumnIndexOrThrow(MemoEntry.COLUMN_MEMO_TITLE)
         );
