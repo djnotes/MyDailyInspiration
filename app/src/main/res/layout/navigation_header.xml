@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:padding="16dp"
+    android:background="@drawable/header"
     android:gravity="bottom"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:background="@drawable/header">
-    <ImageView
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:src="@drawable/man"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/profile_picture"
-        />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="My Name"
-    android:paddingTop="16dp"
-    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    />
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
     <TextView
+        android:id="@+id/tv_your_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I'm gonna do it. I will succeed!"
+        android:paddingTop="16dp"
+        android:text="@string/your_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/tv_your_motto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:paddingTop="4dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:text="@string/your_motto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
 </LinearLayout>

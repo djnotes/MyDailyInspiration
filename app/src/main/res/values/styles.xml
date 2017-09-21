@@ -13,8 +13,8 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="dialogTheme">@style/AlertDialog.AppCompat</item>
 
-
     </style>
+
 
 
 </resources>

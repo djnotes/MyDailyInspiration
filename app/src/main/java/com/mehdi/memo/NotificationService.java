@@ -92,7 +92,6 @@ public class NotificationService extends IntentService {
         SharedPreferences preferences = getSharedPreferences(getString(R.string.preferences_filename), Context.MODE_PRIVATE);
         boolean randomNote = preferences.getBoolean(getString(R.string.pref_random), false);
 
-        //TODO: Add code to generate a random index to pick a note from database.
         //It appears I need to query the whole database into a cursor and then pick one!
         //Create a projection
         String[] projection = {

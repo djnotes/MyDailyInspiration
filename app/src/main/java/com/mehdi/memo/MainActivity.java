@@ -2,7 +2,9 @@ package com.mehdi.memo;
 
 import android.app.AlertDialog;
 import android.app.LoaderManager;
+import android.app.NotificationManager;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,10 +13,13 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,25 +33,45 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.TextView;
 
 import com.mehdi.memo.data.MemoContract.MemoEntry;
 
-import java.util.Locale;
-
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener{
     public static final int LOADER_URL = 0;
     private static final String FRAGTAG = "AlarmFragment";
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static ListView mMemoListView;
     MemoCursorAdapter mMemoAdapter;
 
+    //Define preference-related variables
+    private boolean mNotiEnabled; //Is notification enabled
+    private String mName; //Name displayed on the navigation header
+    private String mMotto; //Motto displayed on the navigation header
+    private boolean mNotificationSwitch; //Turn notification on or off
+    private boolean mRandomSwitch; //Turn random notifications on or off
+    private long mInterval; //Notification interval
+    private SharedPreferences mPrefs; //App preferences
+
+    private AlarmFragment mFragment; //This is the important fragment doing magic like alarm setting
+
     //Define a toolbar
     Toolbar mToolbar;
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
 
+    NotificationManagerCompat notiManager;
+    private static boolean alarmSet=false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Check active notifications on start up and remove all
+        NotificationManager notifMgr =(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if(notifMgr != null) {
+            notifMgr.cancelAll();
+        }
+
         // Sets fullscreen-related flags for the display
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
@@ -95,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START);
+                menuItem.setChecked(false);
                 return true; //"True to display the item as the selected item." - Google Docs
             }
         });
@@ -150,20 +176,49 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         //Add an AlarmFragment to the activity
         if (getSupportFragmentManager().findFragmentByTag(FRAGTAG) == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            AlarmFragment fragment = new AlarmFragment();
-            transaction.add(fragment , FRAGTAG);
+            mFragment= new AlarmFragment();
+            transaction.add(mFragment, FRAGTAG);
             transaction.commit();
         }
 
-        //Create a Locale and set program language accordingly
+        //Preference handling
+        //Register the preference listener
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs.registerOnSharedPreferenceChangeListener(this);
+
+//        mFragment = (AlarmFragment) getSupportFragmentManager().findFragmentByTag(FRAGTAG);
+        if(!alarmSet && mFragment!=null){
+            mFragment = (AlarmFragment) getSupportFragmentManager().findFragmentByTag(FRAGTAG);
+            mFragment.setupAlarm();
+            alarmSet=true;
+        }
+
+        //Set name and motto
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Get new strings for name and motto if any
+        String name = mPrefs.getString(getString(R.string.pref_name) , getString(R.string.your_name));
+        String motto = mPrefs.getString(
+                getString(R.string.key_pref_motto),
+                getString(R.string.your_motto)
+        );
+
+        //Find name and motto text views
+        TextView yourName = findViewById(R.id.tv_your_name);
+        TextView yourMotto = findViewById(R.id.tv_your_motto);
+        //Set name and motto text views
+        yourName.setText(name);
+        yourMotto.setText(motto);
+
     }
+
+
 
     private void comingSoon() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
         .setTitle(R.string.title_message)
                 .setMessage(R.string.coming_soon)
                 .setIcon(R.drawable.icons8_future)
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.ok,new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -175,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                     }
                 });
+        AlertDialog alertDialog;
         builder.create().show();
     }
 
@@ -236,6 +292,34 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return super.onOptionsItemSelected(item);
     }
 
-    
+    @Override
+    public void onBackPressed() {
+        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        }
+        super.onBackPressed();
+
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Get new strings for name and motto if any
+        mName = mPrefs.getString(getString(R.string.pref_name) , getString(R.string.your_name));
+        mMotto = mPrefs.getString(
+                getString(R.string.key_pref_motto),
+                getString(R.string.your_motto)
+        );
+
+        //Find name and motto text views
+        TextView yourName = findViewById(R.id.tv_your_name);
+        TextView yourMotto =findViewById(R.id.tv_your_motto);
+        //Set name and motto text views
+        yourName.setText(mName);
+        yourMotto.setText(mMotto);
+       mFragment = (AlarmFragment) getSupportFragmentManager().findFragmentByTag(FRAGTAG);
+       mFragment.setupAlarm();
+    }
 }
 

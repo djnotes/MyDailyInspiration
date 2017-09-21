@@ -21,11 +21,8 @@
     <string name="are_you_sure">آیا مطمئن هستید؟</string>
     <string name="settings">تنظیمات</string>
     <string name="notification">هشدار</string>
-    <string name="permanent_notificaiton_off">هشدار دائم خاموش</string>
-    <string name="permanent_notification_on">هشدار دائم روشن</string>
-    <string name="show_inspiration_on_lockscreen">نمایش اعلان بر روی صفحه قفل</string>
-    <string name="show_random_inspiration">نمایش الهام تصادفی</string>
-    <string name="show_latest_inspiration">نمایش آخرین الهام</string>
+    <string name="random_inspiration_on">هشدارهای تصادفی روشن</string>
+    <string name="random_notification_off">هشدار تصادفی خاموش</string>
     <string name="no_notes_available">هیچ یادداشتی موجود نیست</string>
     <string name="please_add_some_notes">لطفا چند یادداشت اضافه کنید</string>
     <string name="day_and_time">زمان های الهام</string>

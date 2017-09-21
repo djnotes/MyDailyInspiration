@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">My Daily Inspiration</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="last_inspiration">Last inspiration</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
@@ -23,11 +21,8 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="settings">Settings</string>
     <string name="notification">notification</string>
-    <string name="permanent_notificaiton_off">Permanent Notification Off</string>
-    <string name="permanent_notification_on">Permanent Notification On</string>
-    <string name="show_inspiration_on_lockscreen">Show Inspirations on Lock Screen</string>
-    <string name="show_random_inspiration">Show Random Inspirations</string>
-    <string name="show_latest_inspiration">Show the Last Inspiration Added</string>
+    <string name="random_inspiration_on">Random Notifications On</string>
+    <string name="random_notification_off">Random Notification Off</string>
     <string name="no_notes_available">No Inspirations Available</string>
     <string name="please_add_some_notes">Please Add Some Inspirations First</string>
     <string name="day_and_time">Inspiration Moments</string>
@@ -60,4 +55,11 @@
     <string name="coming_soon">Coming Soon</string>
     <string name="drawer_close" translatable="false">Drawer Close</string>
     <string name="pref_random" translatable="false">pref_toggle_random</string>
+    <string name="none">None</string>
+    <string name="your_motto">Your Motto</string>
+    <string name="your_name">Your Name</string>
+    <string name="pref_name" translatable="false">pref_text_name</string>
+    <string name="key_pref_motto" translatable="false">pref_your_motto</string>
+    <string name="permanent_notification_off">Permanent Notification Off</string>
+    <string name="permanent_notification_on">Permanent Notification On</string>
 </resources>

@@ -11,6 +11,8 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by johndoe on 8/3/17.
@@ -20,7 +22,7 @@ public class AlarmFragment extends Fragment {
 
     //Define intervals in milliseconds to use for scheduling
     private static final long INTERVAL_NEVER = -1; //Never
-    private static final long INTERVAL_1HOUR = 1000 *10; //1 hour
+    private static final long INTERVAL_1HOUR = 1000 *30; //1 hour
     private static final long INTERVAL_2HOURS = 1000 * 3600 * 2;
     private static final long INTERVAL_3HOURS = 1000 * 3600 * 3;
     private static final long INTERVAL_5HOURS = 1000 * 3600 * 5;
@@ -34,9 +36,11 @@ public class AlarmFragment extends Fragment {
     private static final String LOG_TAG = AlarmFragment.class.getSimpleName();
     public final String TAG = this.getClass().getSimpleName();
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+
+
+    public void setupAlarm()
+    {
         //Create an intent
         Intent intent = new Intent(getActivity(), NotificationService.class);
         intent.setAction(Const.ACTION_NOTIFY);
@@ -99,4 +103,12 @@ public class AlarmFragment extends Fragment {
         Log.i(TAG, " Alarm set");
     }
 
+
+//    @Override
+//    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+//         setupAlarm(); //This might not be necessary
+//
+//        //Todo: INVESTIGATE HOW THE PREFERENCES MUST BE SET ON APP INITIALIZATION AND ON PREFERENCE CHANGE e.g. whether random is on, permanent notification is on, etc.
+//        //TODO: Investigate whether we need to setUp alarm again if the user has not changed intervals when changing preferences
+//    }
 }

@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item android:title="Add Inspiration"
-            android:id="@+id/add_new"
-            android:icon="@drawable/plus"
-            />
-        <item android:title="Settings"
-            android:id="@+id/drawer_settings"
-            android:icon="@drawable/gear"/>
-        <item android:title="About App"
-            android:id="@+id/about_app"
-            android:icon="@drawable/application"
-            />
+<group
+    android:id="@+id/main_group"
+    android:checkableBehavior="single"
+    >
+    <item
+        android:id="@+id/add_new"
+        android:icon="@drawable/plus"
+        android:title="Add Inspiration" />
+    <item
+        android:id="@+id/drawer_settings"
+        android:icon="@drawable/gear"
+        android:title="Settings" />
+    <item
+        android:id="@+id/about_app"
+        android:icon="@drawable/application"
+        android:title="About App" />
+    <item
+        android:id="@+id/item_none"
+        android:title="@string/none"
+        android:visible="false" />
+    <item
+        android:id="@+id/more_online"
+        android:icon="@drawable/web"
+        android:title="Find Inspirations Online" />
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/share"
+        android:title="Spread the Word" />
 
-
-    </group>
-
-    <item android:id="@+id/more_items"
-        android:title="Subheader"
-        >
-        <menu>
-            <item
-                android:title="Find Inspirations Online"
-                android:id="@+id/more_online"
-                android:icon="@drawable/web"
-                />
-            <item
-                android:title="Spread the Word"
-                android:id="@+id/share"
-                android:icon="@drawable/share"/>
-        </menu>
-    </item>
+</group>
 </menu>
