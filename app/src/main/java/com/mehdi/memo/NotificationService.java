@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.mehdi.memo.data.MemoContract.MemoEntry;
@@ -70,15 +71,15 @@ public class NotificationService extends IntentService {
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             mNotificationManager.createNotificationChannel(mChannel);
         }
-        builder.addAction(R.drawable.ic_done, "Action Title", PendingIntent.getActivity(
+        builder.addAction(R.drawable.close, getString(R.string.dismiss), PendingIntent.getActivity(
                 getApplicationContext(), REQUEST_CODE + 1,
-                new Intent (getApplicationContext(), MainActivity.class),
+                new Intent(getApplicationContext(),ActionFragment.class),
                 PendingIntent.FLAG_CANCEL_CURRENT
         ));
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
         builder.setContentTitle(mTitle)
                 .setContentText(mContentText)
-                .setSmallIcon(R.drawable.ic_done)
+                .setSmallIcon(R.drawable.bell)
                 .setLights(Color.argb(0, 255, 0, 0), 1000, 3000)
                 .setAutoCancel(true)
                 .setContentIntent(contentIntent);

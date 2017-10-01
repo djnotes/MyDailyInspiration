@@ -4,7 +4,7 @@ package com.mehdi.memo;
  * Created by johndoe on 8/5/17.
  */
 
-class Const {
+public class Const {
     public static final String EXTRA_DIALOG_TITLE = "com.mehdi.memo.extra.dialog_title";
     public static final String EXTRA_DIALOG_MESSAGE = "com.mehdi.memo.extra.dialog_message";
 

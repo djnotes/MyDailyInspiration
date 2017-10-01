@@ -13,19 +13,27 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.EditTextPreference;
+import android.support.v7.preference.EditTextPreferenceDialogFragmentCompat;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceDialogFragmentCompat;
+import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +45,9 @@ import android.widget.TextView;
 
 import com.mehdi.memo.data.MemoContract.MemoEntry;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener{
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
     public static final int LOADER_URL = 0;
     private static final String FRAGTAG = "AlarmFragment";
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -91,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         //Find drawerlayout and navigationview
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mNavigationView = findViewById(R.id.navigation_view);
+
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -181,33 +192,40 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             transaction.commit();
         }
 
-        //Preference handling
-        //Register the preference listener
+        /****
+        Preference handling
+        Register the preference listener
+        ***/
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mPrefs.registerOnSharedPreferenceChangeListener(this);
 
 //        mFragment = (AlarmFragment) getSupportFragmentManager().findFragmentByTag(FRAGTAG);
-        if(!alarmSet && mFragment!=null){
+        if(!alarmSet){
             mFragment = (AlarmFragment) getSupportFragmentManager().findFragmentByTag(FRAGTAG);
-            mFragment.setupAlarm();
-            alarmSet=true;
+            if (mFragment!=null) {
+                mFragment.setupAlarm();
+                alarmSet=true;
+            }
+
         }
+
 
         //Set name and motto
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Get new strings for name and motto if any
-        String name = mPrefs.getString(getString(R.string.pref_name) , getString(R.string.your_name));
+        String name = mPrefs.getString(getString(R.string.key_pref_name) , null);
         String motto = mPrefs.getString(
                 getString(R.string.key_pref_motto),
-                getString(R.string.your_motto)
+                null
         );
-
+        View header= mNavigationView.getHeaderView(0);
         //Find name and motto text views
-        TextView yourName = findViewById(R.id.tv_your_name);
-        TextView yourMotto = findViewById(R.id.tv_your_motto);
+        TextView yourName = header.findViewById(R.id.tv_your_name);
+        TextView yourMotto = header.findViewById(R.id.tv_your_motto);
         //Set name and motto text views
-        yourName.setText(name);
-        yourMotto.setText(motto);
+        if(yourName != null) yourName.setText(name);
+        if (yourMotto != null) yourMotto.setText(motto);
+
 
     }
 
@@ -306,20 +324,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         //Get new strings for name and motto if any
-        mName = mPrefs.getString(getString(R.string.pref_name) , getString(R.string.your_name));
+        mName = mPrefs.getString(getString(R.string.key_pref_name) , null);
         mMotto = mPrefs.getString(
-                getString(R.string.key_pref_motto),
-                getString(R.string.your_motto)
+                getString(R.string.key_pref_motto),null
         );
 
         //Find name and motto text views
-        TextView yourName = findViewById(R.id.tv_your_name);
-        TextView yourMotto =findViewById(R.id.tv_your_motto);
+        TextView yourName = mDrawerLayout.findViewById(R.id.tv_your_name);
+        TextView yourMotto = mDrawerLayout.findViewById(R.id.tv_your_motto);
+        Log.i(LOG_TAG,yourName.getText().toString());
+        Log.i(LOG_TAG,yourMotto.getText().toString());
         //Set name and motto text views
         yourName.setText(mName);
         yourMotto.setText(mMotto);
        mFragment = (AlarmFragment) getSupportFragmentManager().findFragmentByTag(FRAGTAG);
        mFragment.setupAlarm();
+
     }
 }
 

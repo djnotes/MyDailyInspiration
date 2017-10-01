@@ -8,7 +8,7 @@
     <string name="today_inspiration">Today\'s Inspiration</string>
     <string name="insert_failed">Insert failed</string>
     <string name="save_successful">Data was successfully saved</string>
-    <string name="title_message">Message</string>
+    <string name="title_message">Title</string>
     <string name="author">Author</string>
     <string name="list_is_empty">There are no notes! Please add some notes first.</string>
     <string name="adding_new_memo">Add New Memo</string>
@@ -56,10 +56,12 @@
     <string name="drawer_close" translatable="false">Drawer Close</string>
     <string name="pref_random" translatable="false">pref_toggle_random</string>
     <string name="none">None</string>
-    <string name="your_motto">Your Motto</string>
-    <string name="your_name">Your Name</string>
-    <string name="pref_name" translatable="false">pref_text_name</string>
+    <string name="your_motto">Motto</string>
+    <string name="your_name">Name</string>
+    <string name="key_pref_name" translatable="false">pref_text_name</string>
     <string name="key_pref_motto" translatable="false">pref_your_motto</string>
     <string name="permanent_notification_off">Permanent Notification Off</string>
     <string name="permanent_notification_on">Permanent Notification On</string>
+    <string name="hello_blank_fragment">Hello</string>
+    <string name="dismiss">Dismiss</string>
 </resources>

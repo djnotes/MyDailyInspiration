@@ -3,12 +3,15 @@
 
     <EditTextPreference
         android:title="@string/your_name"
-        android:id="@+id/txt_your_name"
-        android:defaultValue="@string/your_name"
-        android:key="@string/pref_name" />
+        android:summary="@string/your_name"
+        android:id="@+id/name_id"
+        android:defaultValue=" "
+        android:key="@string/key_pref_name" />
     <EditTextPreference
+        android:id="@+id/motto_id"
         android:title="@string/your_motto"
-        android:defaultValue="@string/your_motto"
+        android:summary="@string/your_motto"
+        android:defaultValue=" "
         android:key="@string/key_pref_motto" />
 
     <CheckBoxPreference

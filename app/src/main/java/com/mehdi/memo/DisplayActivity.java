@@ -10,7 +10,7 @@ import android.widget.TextView;
  * Created by johndoe on 8/5/17.
  */
 
-class DisplayActivity extends AppCompatActivity{
+public class DisplayActivity extends AppCompatActivity{
     String mTitle, mMessage;
 
     @Override

@@ -38,4 +38,10 @@
     <string name="profile_picture">تصویر پروفایل</string>
     <string name="coming_soon">به زودی</string>
     <string name="hello_blank_fragment">سلام</string>
+    <string name="none">هیچ</string>
+    <string name="your_motto">شعار شما</string>
+    <string name="your_name">نام شما</string>
+    <string name="permanent_notification_off">اعلان دائم خاموش</string>
+    <string name="permanent_notification_on">اعلان دائم روشن</string>
+    <string name="dismiss">بستن</string>
 </resources>

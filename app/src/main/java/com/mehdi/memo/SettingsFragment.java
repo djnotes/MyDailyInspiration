@@ -2,11 +2,11 @@ package com.mehdi.memo;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.DialogPreference;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
-import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
+import android.support.v7.preference.EditTextPreferenceDialogFragmentCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +18,8 @@ import android.view.View;
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener{
     private static final String LOG_TAG = SettingsFragment.class.getSimpleName();
     private ListPreference mListPref;
+    private EditTextPreference mNamePref;
+    private EditTextPreference mMottoPref;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +35,13 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         mListPref= (ListPreference) findPreference(getString(R.string.pref_interval));
         CharSequence entry = mListPref.getEntry();
         mListPref.setSummary(entry);
+
+        //TODO: Find and set summary for the name and motto preference fields
+        mNamePref = (EditTextPreference) findPreference(getString(R.string.key_pref_name));
+        mMottoPref = (EditTextPreference) findPreference(getString(R.string.key_pref_motto));
+
+        mNamePref.setSummary(mNamePref.getText());
+        mMottoPref.setSummary(mMottoPref.getText());
     }
 
 
@@ -40,6 +49,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         CharSequence entry= mListPref.getEntry();
         mListPref.setSummary(entry);
+
+        //Also update name and motto when preference changed
+        mNamePref.setSummary(mNamePref.getText());
+        mMottoPref.setSummary(mMottoPref.getText());
     }
 
 

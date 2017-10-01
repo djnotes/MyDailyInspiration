@@ -22,7 +22,7 @@ public class AlarmFragment extends Fragment {
 
     //Define intervals in milliseconds to use for scheduling
     private static final long INTERVAL_NEVER = -1; //Never
-    private static final long INTERVAL_1HOUR = 1000 *30; //1 hour
+    private static final long INTERVAL_1HOUR = 1000 *  3600 * 1; //1 hour
     private static final long INTERVAL_2HOURS = 1000 * 3600 * 2;
     private static final long INTERVAL_3HOURS = 1000 * 3600 * 3;
     private static final long INTERVAL_5HOURS = 1000 * 3600 * 5;
