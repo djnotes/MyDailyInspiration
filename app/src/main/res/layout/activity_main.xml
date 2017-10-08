@@ -19,39 +19,44 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_below="@+id/toolbar"
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
         android:layout_marginTop="?attr/actionBarSize">
 
         <TextView
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tv_empty_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/list_is_empty"
             android:textSize="@dimen/large_text"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <ImageView
             android:id="@+id/iv_empty_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_empty_view"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             android:contentDescription="@string/list_is_empty"
             android:src="@drawable/emptybox" />
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="?attr/actionBarSize"
-
 
         />
     <android.support.design.widget.FloatingActionButton
@@ -60,9 +65,6 @@
         android:layout_width="@android:dimen/notification_large_icon_width"
         android:layout_height="@android:dimen/notification_large_icon_height"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="@dimen/margin"
-        android:layout_marginEnd="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
         android:src="@drawable/plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
