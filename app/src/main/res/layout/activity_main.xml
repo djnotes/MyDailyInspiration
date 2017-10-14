@@ -4,8 +4,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/content"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     >
 
@@ -20,16 +20,20 @@
 
 
     <android.support.constraint.ConstraintLayout
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:layout_below="@+id/toolbar"
         android:id="@+id/empty_view"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize">
 
         <TextView
-            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tv_empty_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iv_empty_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/list_is_empty"
@@ -42,46 +46,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_empty_view"
-            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
             android:contentDescription="@string/list_is_empty"
             android:src="@drawable/emptybox" />
     </android.support.constraint.ConstraintLayout>
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/main_area"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    <ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/content_area"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_marginLeft="@dimen/margin_side"
+        android:layout_marginStart="@dimen/margin_side"
+        android:layout_marginRight="@dimen/margin_side"
+        android:layout_marginEnd="@dimen/margin_side"
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="@android:dimen/notification_large_icon_width"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
-        <!--
-        TODO:‌Complete this
-                 app:layout_constraintBottom_toTopOf="home button"
-
-        -->
-
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            />
-        <android.support.design.widget.FloatingActionButton
-            android:layout_below="@+id/listview"
-            android:id="@+id/fab"
-            android:layout_width="@android:dimen/notification_large_icon_width"
-            android:layout_height="@android:dimen/notification_large_icon_height"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/plus"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            />
+        />
     </android.support.constraint.ConstraintLayout>
-
 
 
 
