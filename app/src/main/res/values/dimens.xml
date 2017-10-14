@@ -4,7 +4,7 @@
     <dimen name="caption_text">12sp</dimen>
     <dimen name="width_half_layout">100dp</dimen>
     <dimen name="height_text_3lines">150dp</dimen>
-    <dimen name="margin_right_left">10dp</dimen>
+    <dimen name="margin_side">10dp</dimen>
     <dimen name="margin">8dp</dimen>
     <dimen name="text_padding">8dp</dimen>
     <dimen name="large_text">30sp</dimen>

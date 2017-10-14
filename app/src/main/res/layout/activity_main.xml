@@ -20,8 +20,7 @@
 
 
     <android.support.constraint.ConstraintLayout
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_below="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,22 +41,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_empty_view"
-            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:contentDescription="@string/list_is_empty"
             android:src="@drawable/emptybox" />
     </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/main_area"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="?actionBarSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_marginLeft="@dimen/margin_side"
+        android:layout_marginStart="@dimen/margin_side"
+        android:layout_marginRight="@dimen/margin_side"
+        android:layout_marginEnd="@dimen/margin_side"
         android:layout_marginTop="?attr/actionBarSize"
-
         />
     <android.support.design.widget.FloatingActionButton
         android:layout_below="@+id/listview"
@@ -69,6 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
+    </android.support.constraint.ConstraintLayout>
 
 
 
