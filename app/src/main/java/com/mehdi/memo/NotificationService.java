@@ -73,7 +73,8 @@ public class NotificationService extends IntentService {
         }
         Intent dismissIntent = new Intent(getApplicationContext(),DismissService.class);
         dismissIntent.putExtra(getString(R.string.notify_id), notifyId);
-        builder.addAction(R.drawable.close, getString(R.string.dismiss), PendingIntent.getActivity(
+        //Add an action to notification
+        builder.addAction(R.drawable.ic_done, getString(R.string.dismiss), PendingIntent.getActivity(
                 getApplicationContext(), REQUEST_CODE + 1,
                 dismissIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT

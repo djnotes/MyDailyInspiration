@@ -19,6 +19,6 @@ public class DismissService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent){
         int notifId=intent.getIntExtra(getString(R.string.notify_id), 0);
-        ((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE)).cancel(notifId);
+        ((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE)).cancelAll();
     }
 }
