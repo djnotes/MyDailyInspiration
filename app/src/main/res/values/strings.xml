@@ -64,4 +64,5 @@
     <string name="permanent_notification_on">Permanent Notification On</string>
     <string name="hello_blank_fragment">Hello</string>
     <string name="dismiss">Dismiss</string>
+    <string name="notify_id" translatable="false">NOTIF_ID</string>
 </resources>

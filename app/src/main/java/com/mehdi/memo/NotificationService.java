@@ -71,9 +71,11 @@ public class NotificationService extends IntentService {
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             mNotificationManager.createNotificationChannel(mChannel);
         }
+        Intent dismissIntent = new Intent(getApplicationContext(),DismissService.class);
+        dismissIntent.putExtra(getString(R.string.notify_id), notifyId);
         builder.addAction(R.drawable.close, getString(R.string.dismiss), PendingIntent.getActivity(
                 getApplicationContext(), REQUEST_CODE + 1,
-                new Intent(getApplicationContext(),ActionFragment.class),
+                intent,
                 PendingIntent.FLAG_CANCEL_CURRENT
         ));
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
