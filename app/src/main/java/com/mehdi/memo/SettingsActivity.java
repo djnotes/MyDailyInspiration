@@ -1,9 +1,8 @@
 package com.mehdi.memo;
 
-import android.app.Activity;
-import android.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 

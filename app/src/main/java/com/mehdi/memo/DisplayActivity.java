@@ -2,15 +2,16 @@ package com.mehdi.memo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by johndoe on 8/5/17.
  */
 
-public class DisplayActivity extends AppCompatActivity{
+public class DisplayActivity extends AppCompatActivity {
     String mTitle, mMessage;
 
     @Override
