@@ -42,7 +42,7 @@ public final class MemoContract {
          * Type: INTEGER
           * */
         public static final String _ID = BaseColumns._ID;
-        /*
+        /**
         name of the author of note
         Type: TEXT
          */

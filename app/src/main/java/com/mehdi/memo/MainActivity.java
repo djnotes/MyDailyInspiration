@@ -147,8 +147,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mMemoListView = (ListView) findViewById(R.id.listview);
 
         //Set empty view
-        View emptyView = findViewById(R.id.empty_view);
-        mMemoListView.setEmptyView(emptyView);
+//        View emptyView = findViewById(R.id.empty_view);
+//        mMemoListView.setEmptyView(emptyView);
         mMemoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
