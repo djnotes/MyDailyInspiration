@@ -6,8 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Note(
-        @PrimaryKey val note_id: Int,
-        @ColumnInfo(name = "note_title") val noteTitle: String?,
-        @ColumnInfo(name = "note_text") val noteText: String?,
-        @ColumnInfo(name = "note_author") val noteAuthor: String?
+        @PrimaryKey (autoGenerate = true) @ColumnInfo(name = "id") private val id : Int = 0 ,
+        @ColumnInfo(name = "title") val title: String?,
+        @ColumnInfo(name = "text") val text: String?,
+        @ColumnInfo(name = "author") val author: String?,
+        @ColumnInfo(name = "priority") val priority: Int?,
+        @ColumnInfo(name = "last_modified") val lastModified: String?
 )
