@@ -118,7 +118,7 @@ class EditorActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<Cursor
         builder.setPositiveButton(R.string.delete) { dialog, which ->
             //create selection
             val selection = MemoEntry._ID + "=?"
-            val selectionArgs = arrayOf(ContentUris.parseId(mCurrentMemoUri).toString())
+            val selectionArgs = arrayOf(mCurrentMemoUri?.let { ContentUris.parseId(it).toString() })
             val rowsDeleted = contentResolver.delete(mCurrentMemoUri!!, selection, selectionArgs)
             if (rowsDeleted > 0) {
                 Toast.makeText(applicationContext, R.string.delete_successful, Toast.LENGTH_SHORT).show()
