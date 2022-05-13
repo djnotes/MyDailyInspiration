@@ -10,8 +10,8 @@
         <option name="gradleJvm" value="11 (2)" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="/run/media/mehdi/Ba1/src/MyDailyInspiration" />
+            <option value="/run/media/mehdi/Ba1/src/MyDailyInspiration/app" />
           </set>
         </option>
       </GradleProjectSettings>
