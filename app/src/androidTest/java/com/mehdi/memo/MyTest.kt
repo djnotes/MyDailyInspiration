@@ -1,5 +1,6 @@
 package com.mehdi.memo
 
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -20,7 +21,11 @@ class MyTest {
 
     @Test
     fun fab_isShown(){
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
         onView(withId(R.id.fab))
             .check { view, noViewFoundException -> view.isShown }
+
+        activityScenario.close()
     }
 }
